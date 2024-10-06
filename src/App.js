@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Card from "./components/Card";
+import data from "./data";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+  const [isOn, setIsOn] = React.useState(false);
+  function handleClick() {
+    setIsOn((prevState) => !prevState);
+  }
+  const dataMap = data.map((item) => (
+    <Card
+      text={isOn ? `${item.question}` : `${item.answer}`}
+      onClick={setIsOn}
+    />
+  ));
+  return <div className="container">{dataMap}</div>;
 }
-
-export default App;
